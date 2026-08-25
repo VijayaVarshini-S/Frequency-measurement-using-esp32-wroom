@@ -1,0 +1,39 @@
+Web Server, Wi-Fi and JSON API
+
+Current prototype networking:
+#include <WiFi.h>
+#include <WebServer.h>
+
+Server:
+WebServer server(80)
+
+Required routes:
+GET /          → Dashboard
+GET /data      → JSON measurement API
+GET /downloadcsv → CSV download
+
+JSON example:
+{
+  "freq1": 10.0000,
+  "freq2": 9.9000,
+  "freq3": 9.8000,
+  "freq4": 8.7000
+}
+
+The API returns the latest calculated values and must not initiate a new measurement.
+
+Wi-Fi:
+Use station mode.
+Credentials in the public GitHub source must be placeholders:
+const char* WIFI_SSID = "YOUR_SSID";
+const char* WIFI_PASSWORD = "YOUR_PASSWORD";
+
+Never commit real Wi-Fi credentials.
+
+NTP:
+Server: pool.ntp.org
+India offset: 19800 seconds
+Daylight offset: 0
+
+The firmware shall print Wi-Fi status, IP address and NTP synchronization status to Serial.
+
