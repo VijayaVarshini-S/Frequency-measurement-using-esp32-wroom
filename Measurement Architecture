@@ -1,0 +1,34 @@
+Measurement Architecture
+
+
+Use the ESP32 PCNT hardware peripheral as the primary frequency acquisition mechanism.
+
+Do not use:
+- pulseIn()
+- pulseInLong()
+- FFT
+- GPIO polling as the primary measurement method
+- software edge counting
+
+PCNT mapping:
+CH1 → PCNT_UNIT_0
+CH2 → PCNT_UNIT_1
+CH3 → PCNT_UNIT_2
+CH4 → PCNT_UNIT_3
+
+Measurement method:
+1. Configure each PCNT unit to count rising edges.
+2. Start a fixed measurement gate.
+3. Read the PCNT counter after the gate.
+4. Handle PCNT high-limit overflow events.
+5. Reconstruct the total pulse count.
+6. Calculate frequency using the actual elapsed gate time.
+
+Formula:
+Frequency_Hz = Total_Pulses × 1,000,000 / Actual_Gate_Time_us
+
+Recommended initial gate:
+1,000,000 microseconds (1 second)
+
+The actual elapsed time must be used instead of assuming that software timing is exactly one second.
+
