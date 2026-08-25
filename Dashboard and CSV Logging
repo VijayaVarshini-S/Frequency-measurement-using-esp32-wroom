@@ -1,0 +1,33 @@
+Dashboard and CSV Logging
+
+Dashboard requirements:
+- Dark industrial theme.
+- Responsive four-channel layout.
+- Channel number and GPIO.
+- Frequency with four decimal places.
+- Signal status.
+- Connection status.
+- AJAX/fetch updates without full page reload.
+- Recommended polling interval: 500–1000 ms.
+
+CSV header:
+Date,Time,Freq1_Hz,Freq2_Hz,Freq3_Hz,Freq4_Hz
+
+Current prototype logging interval:
+30 minutes
+
+The prototype stores CSV data in RAM using a String buffer. This is suitable only for limited prototype logging.
+
+Important limitation:
+RAM-based CSV data is lost after reboot or power loss.
+
+Production recommendation:
+Use LittleFS persistent storage, for example:
+ /log.csv
+
+CSV download endpoint:
+ /downloadcsv
+
+The browser shall download:
+ frequency_log.csv
+
