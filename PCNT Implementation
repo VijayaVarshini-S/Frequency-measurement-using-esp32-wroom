@@ -1,0 +1,21 @@
+PCNT Implementation
+
+Each frequency channel uses an independent PCNT unit.
+
+The PCNT configuration shall:
+- Count rising/positive edges.
+- Ignore falling edges.
+- Use the appropriate high-limit event.
+- Use a hardware glitch filter.
+- Clear the counter after each completed measurement gate.
+
+Overflow handling:
+The ISR shall only identify the channel and increment its overflow counter. It must not perform String operations, Serial printing, web requests, floating-point calculations, or large memory operations.
+
+Conceptual reconstruction:
+Total pulses = overflow_count × PCNT_HIGH_LIMIT + current_pcnt_count
+
+Concurrent access between the ISR and main application must be protected appropriately.
+
+The PCNT filter value must be selected according to the installed ESP32 Core/IDF API. Do not assume that the configured value is directly equal to microseconds unless confirmed by the API documentation.
+
