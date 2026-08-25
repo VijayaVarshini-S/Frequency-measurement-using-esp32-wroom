@@ -1,0 +1,38 @@
+Filtering, Stability and Accuracy
+
+Target frequency range:
+8.0000 Hz to 10.0000 Hz
+
+Display examples:
+8.0000 Hz
+8.7000 Hz
+9.8000 Hz
+9.9000 Hz
+10.0000 Hz
+
+A one-second counting gate gives approximately 1 Hz raw pulse-count quantization at low frequencies. Therefore, stable four-decimal display values should not be interpreted as four-decimal physical accuracy.
+
+Recommended modes:
+
+Fast mode:
+- 1-second gate
+- Fast updates
+- Lower averaging
+
+Stable mode:
+- Multiple consecutive one-second measurements
+- Rolling average
+- Recommended 8-gate observation window for improved stability
+
+Validation test points:
+8.0000 Hz
+8.5000 Hz
+9.0000 Hz
+9.5000 Hz
+10.0000 Hz
+
+Error:
+Error (%) = |Measured - Reference| / Reference × 100
+
+Accuracy claims must be based on experimental comparison with a calibrated frequency source or frequency counter.
+
