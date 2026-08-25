@@ -1,0 +1,35 @@
+Software Architecture
+
+Core functions:
+setup()
+loop()
+setupPCNT()
+readFrequency()
+pcntOverflowISR()
+handleRoot()
+handleData()
+handleCSV()
+logToCSV()
+
+Main loop responsibilities:
+1. Service the HTTP server.
+2. Determine when the measurement gate expires.
+3. Read PCNT counters.
+4. Calculate frequency.
+5. Perform scheduled CSV logging.
+6. Print diagnostics.
+
+Avoid long blocking delays during normal operation.
+
+The frequency acquisition must remain independent of web-server workload.
+
+Serial output should include:
+WiFi Connected
+IP Address
+Time synchronized
+PCNT initialization status
+Server startup status
+F1=10.0000 Hz | F2=9.9000 Hz | F3=9.8000 Hz | F4=8.7000 Hz
+
+The design should support continuous unattended operation.
+
